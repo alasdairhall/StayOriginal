@@ -46,10 +46,9 @@ app.get(url.parse(config.oauth_callback).path, function(req, res) {
 app.post('/tweet', function(req, res) {
 	if(!req.cookies.access_token || !req.cookies.access_token_secret) {
 
-		return res.redirect('/auth/twitter');
+		res.redirect('/auth/twitter');
+		return;
 	}
-
-	console.log("req.body.tweet: " + req.body.tweet);
 
 	authenticator.post('https://api.twitter.com/1.1/statuses/update.json',
 		req.cookies.access_token, req.cookies.access_token_secret,

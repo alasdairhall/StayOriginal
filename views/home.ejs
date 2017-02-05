@@ -22,7 +22,7 @@
 				background-color: #fff;
 			}
 
-			a {
+			/*a {
 				display: inline-block;
 				padding: 10px 20px;
 				border: 1px solid #fff;
@@ -30,7 +30,7 @@
 				color: #fff;
 				background-color: #777;
 				text-decoration: none;
-			}
+			}*/
 
 			section {
 				margin-top: 60px;
@@ -67,7 +67,7 @@
 			<textarea class="regex-again-example"></textarea>
 			<br>
 			<button id="submit-button">Post to twitter</button>
-
+			<a href="/auth/twitter">Authorise</a>
 			<script>
 
 $(document).ready(function() {
@@ -92,10 +92,10 @@ $(document).ready(function() {
 				type: "POST",
 				url: "/tweet",
 				data: {tweet: $(".regex-again-example").val()},
-				success: function(data) {console.log(data);}
+				success: function(data) {console.log(data); alert("Tweet sent!");}
 			});
 		} else {
-			console.log("Used a forbidden word");
+			alert("You used a common word. Try rewording");
 		}
 		
 	})
