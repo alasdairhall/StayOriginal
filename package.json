@@ -9,8 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-  	"cookie-parser": "^1.4.0",
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.0",
     "express": "^4.14.1",
-    "oauth": "^0.9.14"
+    "oauth": "^0.9.14",
+    "debug": "~2.6.0",
+    "ejs": "~2.5.5",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.2"
   }
 }

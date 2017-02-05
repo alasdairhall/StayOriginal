@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Highlight Within Textarea</title>
+		<title>Stay Original</title>
 
 		<!-- need jQuery, obviously -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -63,10 +63,10 @@
 		<section>
 			<img src="stay-orig.PNG">
 			<h2>Attempt constructing sentences containing uncommon vocabulary</h2>
-			<p>Any of the top 1,000 words aren't allowed.</p>
-			<textarea class="regex-again-example">stay original</textarea>
+			<p>Try to write a tweet without using any of the 1,000 most common words in the English language.</p>
+			<textarea class="regex-again-example"></textarea>
 			<br>
-			<button id="submit-button">Submit</button>
+			<button id="submit-button">Post to twitter</button>
 
 			<script>
 
@@ -85,11 +85,19 @@ $(document).ready(function() {
 	}
 
 	$("#submit-button").click(function() {
-		$.ajax({
-			type: "POST",
-			url: "https://api.twitter.com/1.1/statuses/update.json?status=Wagwarn!!!&display_coordinates=false",
-			success: function(data) {console.log(data);}
-		});
+		var string = words ? words.join("|") : "";
+		var reg = new RegExp("\\b(" + string + ")\\b", "gi");
+		if(!reg.test($(".regex-again-example").val())) {
+			$.ajax({
+				type: "POST",
+				url: "/tweet",
+				data: {tweet: $(".regex-again-example").val()},
+				success: function(data) {console.log(data);}
+			});
+		} else {
+			console.log("Used a forbidden word");
+		}
+		
 	})
 
 
